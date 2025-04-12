@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Adicionar Item à Lista</title>
+   <style>
+       * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+
+body {
+   font-family: Arial, sans-serif;
+   background: linear-gradient(120deg, #84fab0, #8fd3f4);
+   color: #333;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+}
+
+
+.container {
+   background: #fff;
+   padding: 20px 30px;
+   border-radius: 12px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   text-align: center;
+   max-width: 400px;
+   width: 90%;
+}
+
+
+h1 {
+   font-size: 24px;
+   color: #444;
+   margin-bottom: 10px;
+}
+
+
+p {
+   font-size: 16px;
+   margin-bottom: 15px;
+}
+
+
+input {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 10px;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   font-size: 16px;
+}
+
+
+input:focus {
+   border-color: #84fab0;
+   outline: none;
+}
+
+
+button {
+   background: #84fab0;
+   color: white;
+   border: none;
+   padding: 10px 15px;
+   border-radius: 8px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background 0.3s ease;
+}
+
+
+button:hover {
+   background: #69d09b;
+}
+
+
+ul {
+   list-style: none;
+   padding: 0;
+   margin-top: 15px;
+}
+
+
+ul li {
+   background: #f1f1f1;
+   margin: 5px 0;
+   padding: 10px;
+   border-radius: 8px;
+   text-align: left;
+}
+
+
+   </style>
+</head>
+<body>
+   <div class="container">
+       <h1>Adicionar Itens à Lista</h1>
+       <p>Digite um item para adicionar à lista:</p>
+       <input type="text" id="itemInput" placeholder="Ex: Comprar leite">
+       <button id="adicionarBtn">Adicionar</button>
+       <ul id="lista"></ul>
+   </div>
+   <script>
+       document.getElementById("adicionarBtn").addEventListener("click", function () {
+   const itemInput = document.getElementById("itemInput");
+   const lista = document.getElementById("lista");
+
+
+   const textoItem = itemInput.value.trim();
+
+
+   if (textoItem === "") {
+       alert("Por favor, insira um texto válido!");
+       return;
+   }
+
+   const novoItem = document.createElement("li");
+   novoItem.textContent = textoItem;
+   lista.appendChild(novoItem);
+
+
+   itemInput.value = "";
+   itemInput.focus();
+});
+
+   </script>
+</body>
+</html>
+
+

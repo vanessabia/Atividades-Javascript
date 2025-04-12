@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temporizador</title>
+  <style>
+        
+    body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url(img/background.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .display{
+    background-color: rgb(247, 232, 255);
+    border-radius: 3mm;
+    border: 1px solid black;
+    padding: 25px;
+  }
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: blueviolet;
+  }
+  .time-display {
+    margin: 20px;
+    font-size: 18px;
+  }
+  .times{
+    display: flex;
+    flex-direction: column;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: column;
+  }
+  .buttons2{
+    width: 300px;
+  }
+  #stop{
+    width: 127px;
+  }
+  #reset{
+    width: 127px;
+  }
+  .body{
+    display: flex;
+    flex-direction: row;
+  }
+
+  </style>
+
+</head>
+<body>
+  <div class="display">
+  <h1>Temporizador</h1>
+  <div class="body">
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button id="time1">Time 1</button>
+      <button id="time2">Time 2</button>
+      <button id="time3">Time 3</button>
+    </div>
+   
+    <div class="times">
+      <div class="time-display" id="elapsed-time">Tempo Total: 0 ms</div>
+      <div class="time-display" id="time1-display">Time 1: ---</div>
+      <div class="time-display" id="time2-display">Time 2: ---</div>
+      <div class="time-display" id="time3-display">Time 3: ---</div>
+    </div>
+  </div>
+    <div class="buttons2">
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    let startTime = null;
+    let intervalId = null;
+    const times = { time1: null, time2: null, time3: null };
+
+    const elapsedTimeDisplay = document.getElementById("elapsed-time");
+    const time1Display = document.getElementById("time1-display");
+    const time2Display = document.getElementById("time2-display");
+    const time3Display = document.getElementById("time3-display");
+
+
+    document.getElementById("start").addEventListener("click", () => {
+      if (!intervalId) {
+        startTime = Date.now();
+        intervalId = setInterval(() => {
+          const elapsed = Date.now() - startTime;
+          elapsedTimeDisplay.textContent = `Tempo Total: ${elapsed} ms`;
+        }, 10);
+      }
+    });
+
+    document.getElementById("time1").addEventListener("click", () => {
+      if (startTime) {
+        times.time1 = Date.now() - startTime;
+        time1Display.textContent = `Time 1: ${times.time1} ms`;
+      }
+    });
+
+    document.getElementById("time2").addEventListener("click", () => {
+      if (startTime) {
+        times.time2 = Date.now() - startTime;
+        time2Display.textContent = `Time 2: ${times.time2} ms`;
+      }
+    });
+
+    document.getElementById("time3").addEventListener("click", () => {
+      if (startTime) {
+        times.time3 = Date.now() - startTime;
+        time3Display.textContent = `Time 3: ${times.time3} ms`;
+      }
+    });
+
+    document.getElementById("stop").addEventListener("click", () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    });
+
+    document.getElementById("reset").addEventListener("click", () => {
+      clearInterval(intervalId);
+      intervalId = null;
+      startTime = null;
+      elapsedTimeDisplay.textContent = "Tempo Total: 0 ms";
+      time1Display.textContent = "Time 1: ---";
+      time2Display.textContent = "Time 2: ---";
+      time3Display.textContent = "Time 3: ---";
+      Object.keys(times).forEach(key => (times[key] = null));
+    });
+
+  </script>
+
+</body>
+</html>
+
+
