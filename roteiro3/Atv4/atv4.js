@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=, initial-scale=1.0">
-   <title>Funcionário</title>
-</head>
-<body>
-   <script>
-
 class Pessoa {
    constructor(nome, idade) {
        this.nome = nome;
@@ -36,7 +26,3 @@ class Funcionario extends Pessoa {
 const funcionario = new Funcionario("Vanessa", 19, 5000.00);
 console.log(funcionario.mostrarDados());
 console.log(funcionario.mostrarSalario());
-
-   </script>
-</body>
-</html>
